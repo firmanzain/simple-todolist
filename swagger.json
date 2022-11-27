@@ -1,0 +1,392 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "NodeJS Todolist API",
+        "description": "API Documentation for Todolist",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Todolist Services"
+        }
+    ],
+    "paths": {
+        "/": {
+            "get": {
+                "description": "API service Get Todolist",
+                "tags": [
+                    "Todolist Services"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Response success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/getResponse"
+                                },
+                                "examples": {
+                                    "response success": {
+                                        "$ref": "#/components/examples/getResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "API service Create Todolist",
+                "tags": [
+                    "Todolist Services"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/postRequest"
+                            },
+                            "examples": {
+                                "request": {
+                                    "$ref": "#/components/examples/postRequest"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Response success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/postResponse"
+                                },
+                                "examples": {
+                                    "response success": {
+                                        "$ref": "#/components/examples/postResponseSuccess"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "API service Update Todolist",
+                "tags": [
+                    "Todolist Services"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/putRequest"
+                            },
+                            "examples": {
+                                "request": {
+                                    "$ref": "#/components/examples/putRequest"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Response success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/putResponse"
+                                },
+                                "examples": {
+                                    "response success": {
+                                        "$ref": "#/components/examples/putResponseSuccess"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "API service Delete Todolist",
+                "tags": [
+                    "Todolist Services"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/deleteRequest"
+                            },
+                            "examples": {
+                                "request": {
+                                    "$ref": "#/components/examples/deleteRequest"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Response success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/deleteResponse"
+                                },
+                                "examples": {
+                                    "response success": {
+                                        "$ref": "#/components/examples/deleteResponseSuccess"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "getResponse": {
+                "type": "object",
+                "required": [
+                    "code",
+                    "message",
+                    "data"
+                ],
+                "properties": {
+                    "code": {
+                        "type": "number",
+                        "minLength": 3,
+                        "maxLength": 3
+                    },
+                    "message": {
+                        "type": "string",
+                        "enum": [
+                            "Success",
+                            "Failed"
+                        ]
+                    },
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "id",
+                                "todo"
+                            ],
+                            "properties": {
+                                "id": {
+                                    "type": "number"
+                                },
+                                "todo": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "postRequest": {
+                "type": "object",
+                "required": [
+                    "todo"
+                ],
+                "properties": {
+                    "todo": {
+                        "type": "string"
+                    }
+                }
+            },
+            "postResponse": {
+                "type": "object",
+                "required": [
+                    "code",
+                    "message",
+                    "data"
+                ],
+                "properties": {
+                    "code": {
+                        "type": "number",
+                        "minLength": 3,
+                        "maxLength": 3
+                    },
+                    "message": {
+                        "type": "string",
+                        "enum": [
+                            "Success",
+                            "Failed"
+                        ]
+                    },
+                    "data": {
+                        "type": "object",
+                        "required": [
+                            "id",
+                            "todo"
+                        ],
+                        "properties": {
+                            "id": {
+                                "type": "number"
+                            },
+                            "todo": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "putRequest": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "todo"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "number"
+                    },
+                    "todo": {
+                        "type": "string"
+                    }
+                }
+            },
+            "putResponse": {
+                "type": "object",
+                "required": [
+                    "code",
+                    "message",
+                    "data"
+                ],
+                "properties": {
+                    "code": {
+                        "type": "number",
+                        "minLength": 3,
+                        "maxLength": 3
+                    },
+                    "message": {
+                        "type": "string",
+                        "enum": [
+                            "Success",
+                            "Failed"
+                        ]
+                    },
+                    "data": {
+                        "type": "object",
+                        "required": [
+                            "id",
+                            "todo"
+                        ],
+                        "properties": {
+                            "id": {
+                                "type": "number"
+                            },
+                            "todo": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "deleteRequest": {
+                "type": "object",
+                "required": [
+                    "id"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "number"
+                    }
+                }
+            },
+            "deleteResponse": {
+                "type": "object",
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "properties": {
+                    "code": {
+                        "type": "number",
+                        "minLength": 3,
+                        "maxLength": 3
+                    },
+                    "message": {
+                        "type": "string",
+                        "enum": [
+                            "Success",
+                            "Failed"
+                        ]
+                    }
+                }
+            }
+        },
+        "examples": {
+            "getResponse": {
+                "value": {
+                    "code": 200,
+                    "message": "Success",
+                    "data": [
+                        {
+                            "id": 0,
+                            "todo": "Reading Book"
+                        },
+                        {
+                            "id": 1,
+                            "todo": "Watching Movie"
+                        }
+                    ]
+                }
+            },
+            "postRequest": {
+                "value": {
+                    "todo": "Sleeping"
+                }
+            },
+            "postResponseSuccess": {
+                "value": {
+                    "code": 200,
+                    "message": "Success",
+                    "data": {
+                        "id": 2,
+                        "todo": "Sleeping"
+                    }
+                }
+            },
+            "putRequest": {
+                "value": {
+                    "id": 2,
+                    "todo": "Sleeping in the living room"
+                }
+            },
+            "putResponseSuccess": {
+                "value": {
+                    "code": 200,
+                    "message": "Success",
+                    "data": {
+                        "id": 2,
+                        "todo": "Sleeping in the living room"
+                    }
+                }
+            },
+            "deleteRequest": {
+                "value": {
+                    "id": 2
+                }
+            },
+            "deleteResponseSuccess": {
+                "value": {
+                    "code": 200,
+                    "message": "Success"
+                }
+            }
+        }
+    }
+}
